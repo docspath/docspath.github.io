@@ -1,1 +1,131 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Bar</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #000000;
+      font-family: 'Lato', sans-serif;
+      color: white;
+    }
+    .search-box {
+      width: fit-content;
+      height: fit-content;
+      position: relative;
+    }
+    .input-search {
+      height: 50px;
+      width: 50px;
+      border-style: none;
+      padding: 10px;
+      font-size: 18px;
+      letter-spacing: 2px;
+      outline: none;
+      border-radius: 25px;
+      transition: all .5s ease-in-out;
+      background-color: #c2c2c2;
+      padding-right: 40px;
+      color: #fff;
+    }
+    .input-search:focus {
+      width: 300px;
+      border-radius: 0px;
+      background-color: transparent;
+      border-bottom: 1px solid rgba(255, 255, 255, .5);
+      transition: all 0.5s cubic-bezier(0, 0.110, 0.35, 2);
+    }
+    .input-search::placeholder {
+      color: rgba(255, 255, 255, .5);
+      font-size: 18px;
+      letter-spacing: 2px;
+      font-weight: 100;
+    }
+    .btn-search {
+      width: 50px;
+      height: 50px;
+      border-style: none;
+      font-size: 20px;
+      font-weight: bold;
+      outline: none;
+      cursor: pointer;
+      border-radius: 50%;
+      position: absolute;
+      right: 0px;
+      color: #ffffff;
+      background-color: transparent;
+      pointer-events: none;
+    }
+    .results {
+      margin-top: 20px;
+    }
+    .result-item {
+      font-size: 18px;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="search-box">
+    <button class="btn-search"><i class="fas fa-search"></i></button>
+    <input type="text" class="input-search" placeholder="Type a number and press Enter..." id="searchInput">
+  </div>
+  <div class="results" id="results"></div>
+  <script>
+    const data = {
+      "Brayn": [667, 755, 787],
+      "Carl": [699, 67, 353]
+    };
+
+    document.getElementById("searchInput").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") { // Check if Enter key is pressed
+        const query = this.value.trim();
+        const resultsDiv = document.getElementById("results");
+        resultsDiv.innerHTML = ""; // Clear previous results
+
+        if (query) {
+          const numberToSearch = parseInt(query, 10);
+
+          if (!isNaN(numberToSearch)) {
+            let found = false;
+
+            Object.entries(data).forEach(([key, value]) => {
+              if (value.includes(numberToSearch)) {
+                const resultItem = document.createElement("div");
+                resultItem.className = "result-item";
+                resultItem.textContent = key;
+                resultsDiv.appendChild(resultItem);
+                found = true;
+              }
+            });
+
+            if (!found) {
+              const notFoundItem = document.createElement("div");
+              notFoundItem.className = "result-item";
+              notFoundItem.textContent = "Not Found";
+              resultsDiv.appendChild(notFoundItem);
+            }
+          } else {
+            const notFoundItem = document.createElement("div");
+            notFoundItem.className = "result-item";
+            notFoundItem.textContent = "Invalid Input";
+            resultsDiv.appendChild(notFoundItem);
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
