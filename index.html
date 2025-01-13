@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Territory Underwriter Lookup</title>
+  <title>Zip Code Search</title>
   <style>
     * {
       box-sizing: border-box;
@@ -21,36 +21,30 @@
       padding: 20px;
       text-align: center;
     }
-    .container {
+    .search-container {
       background-color: white;
-      border-radius: 10px;
-      padding: 50px 40px;
+      border-radius: 8px;
+      padding: 40px 30px;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
       width: 100%;
-      max-width: 700px;
+      max-width: 600px;
     }
-    .title {
-      font-size: 26px;
+    .search-title {
+      font-size: 24px;
       font-weight: 700;
       color: #005f73;
-      margin-bottom: 20px;
-    }
-    .description {
-      font-size: 16px;
-      margin-bottom: 40px;
-      color: #555;
-      line-height: 1.5;
+      margin-bottom: 30px;
     }
     .input-search {
       width: 100%;
-      padding: 16px;
+      padding: 15px;
       font-size: 18px;
       border: 2px solid #005f73;
       border-radius: 5px;
       color: #333;
       outline: none;
       transition: all 0.3s ease;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     .input-search:focus {
@@ -58,7 +52,7 @@
       background-color: #e0f7ff;
     }
     .btn-search {
-      padding: 14px 22px;
+      padding: 12px 20px;
       font-size: 18px;
       font-weight: bold;
       border: none;
@@ -77,29 +71,19 @@
     .result-item {
       font-size: 18px;
       background-color: #f1f8ff;
-      padding: 12px;
-      margin: 10px 0;
+      padding: 10px;
+      margin: 8px 0;
       border-radius: 5px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    .update-message {
-      margin-top: 30px;
-      font-size: 14px;
-      color: #888;
     }
   </style>
 </head>
 <body>
-
-  <div class="container">
-    <div class="title">Territory Underwriter Lookup</div>
-    <p class="description">Access the website to input the agent's zip code and quickly identify the assigned territory underwriter. Please be advised that the website has been updated as of January 13, 2025.</p>
-    
+  <div class="search-container">
+    <div class="search-title">Search Zip Code</div>
     <input type="text" id="searchInput" class="input-search" placeholder="Enter Zip Code...">
     <button class="btn-search" onclick="searchZipCode()">Search</button>
-    
     <div id="results" class="results"></div>
-    <div class="update-message">Website last updated: January 13, 2025</div>
   </div>
 
   <script>
@@ -111,49 +95,36 @@
       "CA - Angie Estrada": [90001, 90002, 90003],
       "CA - Joe Dito": [90004, 90005, 90006],
       "CA - Sara Thomas": [90007, 90008, 90009],
-      "RI - Wendi Ingram": [02901, 02902, 02903, 02904],
-      "ALACHUA": [32601, 32602, 32603, 32604, 32605, 32606, 32607, 32608, 32609, 32610, 32611, 32612, 32614, 32615, 32616, 32618, 32627, 32631, 32633, 32635, 32640, 32641, 32643, 32653, 32654, 32655, 32658, 32662, 32667, 32669, 32694],
-      "BAKER": [32040, 32063, 32072, 32087],
-      "BAY": [32401, 32402, 32403, 32404, 32405, 32406, 32407, 32408, 32409, 32410, 32411, 32412, 32413, 32417, 32438, 32444, 32466],
-      "BRADFORD": [32042, 32044, 32058, 32091, 32622],
-      "BREVARD": [32754, 32775, 32780, 32781, 32783, 32796, 32815, 32899, 32901, 32902, 32903, 32904, 32905, 32906, 32907, 32908, 32909, 32910, 32911, 32912, 32919, 32920, 32922, 32923, 32924, 32925, 32926, 32927, 32931, 32932, 32934, 32935, 32936, 32937, 32940, 32941, 32949, 32950, 32951, 32952, 32953, 32954, 32955, 32956, 32959, 32976],
-      "BROWARD": [33004, 33008, 33009, 33019, 33020, 33021, 33022, 33023, 33024, 33025, 33026, 33027, 33028, 33029, 33060, 33061, 33062, 33063, 33064, 33065, 33066, 33067, 33068, 33069, 33071, 33072, 33073, 33074, 33075, 33076, 33077, 33081, 33082, 33083, 33084, 33093, 33097, 33301, 33302, 33303, 33304, 33305, 33306, 33307, 33308, 33309, 33310, 33311, 33312, 33313, 33314, 33315, 33316, 33317, 33318, 33319, 33320, 33321, 33322, 33323, 33324, 33325, 33326, 33327, 33328, 33329, 33330, 33331, 33332, 33334, 33335, 33336, 33337, 33338, 33339, 33340, 33345, 33346, 33348, 33349, 33351, 33355, 33359, 33388, 33394, 33441, 33442, 33443, 33973],
-      "CALHOUN": [32421, 32424, 32430, 32449],
-      "CHARLOTTE": [33927, 33938, 33946, 33947, 33948, 33949, 33950, 33951, 33952, 33953, 33954, 33955, 33980, 33981, 33982, 33983],
-      "CITRUS": [34423, 34428, 34429, 34433, 34434, 34436, 34442, 34445, 34446, 34447, 34448, 34450, 34451, 34452, 34453, 34460, 34461, 34464, 34465, 34487],
-      "CLAY": [32003, 32006, 32030, 32043, 32050, 32065, 32067, 32068, 32073, 32079, 32160, 32656],
-      "COLLIER": [34101, 34102, 34103, 34104, 34105, 34106, 34107, 34108, 34109, 34110, 34112, 34113, 34114, 34115, 34116, 34117, 34119],
-      "COLUMBIA": [32055, 32056, 32059, 32061, 32062, 32065, 32066],
-      "DESOTO": [34224, 34269, 34269],
-      "DUVAL": [32201, 32202, 32203, 32204, 32205, 32206, 32207, 32208, 32209, 32210, 32211, 32212, 32214, 32216, 32217, 32218, 32219, 32221, 32222, 32223, 32224, 32225, 32226, 32227, 32233, 32234, 32236, 32244, 32246, 32250, 32254, 32256, 32257, 32258, 32259, 32260],
-      "ESCAMBIA": [32501, 32502, 32503, 32504, 32505, 32506, 32507, 32508, 32509, 32511, 32514, 32516, 32520, 32521, 32523, 32526, 32533, 32534, 32535, 32536, 32537, 32541, 32544],
+      "RI - Wendi Ingram": [02901, 02902, 02903, 02904]
     };
 
     function searchZipCode() {
-      const input = document.getElementById("searchInput").value;
-      const resultsDiv = document.getElementById("results");
-      resultsDiv.innerHTML = "";
-      
-      const zip = parseInt(input);
-      if (isNaN(zip)) {
-        resultsDiv.innerHTML = "<div class='result-item'>Please enter a valid zip code.</div>";
+      const searchInput = document.getElementById('searchInput').value.trim();
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = '';
+
+      if (!searchInput) {
         return;
       }
 
-      let found = false;
-      for (let territory in zipCodes) {
-        if (zipCodes[territory].includes(zip)) {
-          resultsDiv.innerHTML = `<div class="result-item">The territory underwriter for this zip code (${zip}) is: <strong>${territory}</strong></div>`;
-          found = true;
-          break;
-        }
-      }
+      const results = Object.keys(zipCodes).filter(region => 
+        zipCodes[region].includes(parseInt(searchInput))
+      );
 
-      if (!found) {
-        resultsDiv.innerHTML = `<div class="result-item">No territory underwriter found for this zip code.</div>`;
+      if (results.length > 0) {
+        results.forEach(result => {
+          const resultItem = document.createElement('div');
+          resultItem.className = 'result-item';
+          resultItem.innerText = Zip Code belongs to: ${result};
+          resultsDiv.appendChild(resultItem);
+        });
+      } else {
+        const noResultItem = document.createElement('div');
+        noResultItem.className = 'result-item';
+        noResultItem.innerText = 'No matching results found';
+        resultsDiv.appendChild(noResultItem);
       }
     }
   </script>
-
 </body>
 </html>
