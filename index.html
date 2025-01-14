@@ -259,7 +259,7 @@
 
         // Check for zip code match
         let ParsedZipCode = parseInt(zipCode);
-        let underwriter = "No underwriter found for this zip code.";
+        let underwriter = "No underwriter found for this zip code/county.";
         for (let underwriterName in underwriters) {
             const territories = underwriters[underwriterName];
             for (let county in territories.zip_codes) {
