@@ -250,15 +250,24 @@
         };
 
         // Check for zip code match
+        let ParsedZipCode = parseInt(zipCode);
         let underwriter = "No underwriter found for this zip code.";
         for (let underwriterName in underwriters) {
             const territories = underwriters[underwriterName];
             for (let county in territories.zip_codes) {
-                if (territories.zip_codes[county].includes(parseInt(zipCode))) {
-                    underwriter = underwriterName;
-                    break;
+                if (isNaN(ParsedZipCode)) {
+                    if (county == zipCode.toUpperCase()) {
+                        underwriter = underwriterName;
+                        break;
+                    }
+                } else {
+                    if (territories.zip_codes[county].includes(ParsedZipCode)) {
+                        underwriter = underwriterName;
+                        break;
+                    }
                 }
             }
+            
         }
 
         underwriterNameElement.textContent = underwriter;
