@@ -93,7 +93,7 @@
     <li><strong>RI HO3:</strong> Wendi I.</li>
 </ul>
         <p class="notice">Kindly provide the agent's zip code, county, or state to assist in locating the appropriate territory underwriter.</p>
-        <input type="text" id="zipCode" placeholder="Enter Zip Code, County, State">
+        <input type="text" id="UserInput" placeholder="Enter Zip Code, County, State">
         <button onclick="findUnderwriter()">Find Underwriter</button>
     </div>
 
@@ -108,7 +108,7 @@
 
 <script>
     function findUnderwriter() {
-        const zipCode = document.getElementById("zipCode").value.trim();
+        const UserInput = document.getElementById("UserInput").value.trim();
 
         // Clear any previous results
         const results = document.getElementById("results");
@@ -263,18 +263,18 @@
         };
 
         // Check for zip code match
-        let ParsedZipCode = parseInt(zipCode);
+        let ZipCodeInt = parseInt(UserInput);
         let underwriter = "No underwriter found for this zip code/county.";
         for (let underwriterName in underwriters) {
             const territories = underwriters[underwriterName];
             for (let county in territories.zip_codes) {
-                if (isNaN(ParsedZipCode)) {
-                    if (county == zipCode.toUpperCase()) {
+                if (isNaN(ZipCodeInt)) {
+                    if (county == UserInput.toUpperCase()) {
                         underwriter = underwriterName;
                         break;
                     }
                 } else {
-                    if (territories.zip_codes[county].includes(ParsedZipCode)) {
+                    if (territories.zip_codes[county].includes(ZipCodeInt)) {
                         underwriter = underwriterName;
                         break;
                     }
