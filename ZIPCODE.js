@@ -11555,3 +11555,5 @@ const ZipCodesData = {
     "32463"
   ]
 };
+
+window.ZipCodesData = ZipCodesData;
