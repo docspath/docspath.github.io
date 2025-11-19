@@ -464,6 +464,13 @@
           ShowResult({ loadingEl: LoadingMobileHome, resultsEl: ResultsMobileHome, nameEl: UnderwriterNameMobileHome }, Uw);
         }, 200);
       }
+      function AutoRefreshPage() {
+          setTimeout(() => {
+              window.location.reload();
+          }, 5000); // 5 minutes
+      }
+      
+      AutoRefreshPage();
     </script>
   </body>
 </html>
